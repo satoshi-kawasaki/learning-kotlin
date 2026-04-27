@@ -1,0 +1,26 @@
+{
+  "name": "Kotlin Development environment with Amazon Corretto 17",
+  "build": {
+    "dockerfile": "./Dockerfile.Kotlin"
+  },
+  "overrideCommand": true,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "fwcd.kotlin",
+        "vscjava.vscode-java-pack"
+      ],
+      "settings": {
+        "kotlin.java.home": "/usr/lib/jvm/java-17-amazon-corretto",
+        "kotlin.languageServer.enabled": true,
+        "kotlin.debugAdapter.enabled": true
+      }
+    }
+  },
+  "remoteEnv": {
+    "JAVA_HOME": "/usr/lib/jvm/java-17-amazon-corretto",
+    "PATH": "/home/vscode/.sdkman/candidates/kotlin/current/bin:${containerEnv:PATH}"
+  },
+  "postCreateCommand": "./gradlew build",
+  "remoteUser": "vscode"
+}
